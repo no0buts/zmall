@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xx55xx.mapper.DemoMapper">
+
+	<resultMap id="TestEntity" type="com.xx55xx.entity.TestEntity">
+		<id property="id" column="id"></id>
+		<result property="name" column="name"/>
+	</resultMap>
+	<select id="getTest" resultMap="TestEntity">
+		SELECT * FROM TB_TEST
+	</select>
+	
+</mapper>
