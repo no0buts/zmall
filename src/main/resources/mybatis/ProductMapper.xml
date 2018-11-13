@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xx55xx.mapper.ProductMapper">
+
+	<resultMap id="ProductEntity" type="cn.xx55xx.entity.ProductEntity">
+		<id property="productId" column="product_id"></id>
+		<result property="productName" column="product_name"/>
+		<result property="productPrice" column="product_price"/>
+		<result property="productOriginalprice" column="product_originalprice"/>
+		<result property="productSalesvolume" column="product_salesvolume"/>
+		<result property="productImage" column="product_image"/>
+	</resultMap>
+	<select id="getProductList" resultMap="ProductEntity">
+		SELECT * FROM PRODUCT_INFO;
+	</select>
+
+	<select id="getProductDetailById" resultMap="ProductEntity" parameterType="java.lang.Integer">
+		SELECT * FROM PRODUCT_INFO where product_id =#{productId}
+	</select>
+
+
+	
+</mapper>

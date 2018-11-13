@@ -5,14 +5,46 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
 	<!-- 自动将控制器加载到bean -->
-	<context:component-scan base-package="com.xx55xx.controller" />
+	<context:component-scan base-package="cn.xx55xx.controller" />
 	
-	<!-- 配置视图解析器 -->
+	<!-- 配置视图解析器
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/views/" />
 		<property name="suffix" value=".jsp" />
-		<!-- 可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+    -->
+	<!-- FreeMarker视图解析器     默认视图 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+		<property name="contentType" value="text/html; charset=utf-8"/>
+		<property name="requestContextAttribute" value="request"/>
+		<property name="cache" value="false"/>
+		<!--<property name="viewNames" value="*.ftl" />-->
+		<!-- 配置文件类型，freemaker文件类型标准是ftl -->
+		<property name="suffix" value=".ftl"/>
+		<!-- 如果有多种解析器，添加这一行，让freemaker解析器优先 -->
+		<!--<property name="order" value="0"/>-->
+	</bean>
+	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<!-- 模板文件的存放路径 -->
+		<property name="templateLoaderPath" value="/WEB-INF/views/"/>
+		<!-- 如果使用freemaker的自定义标签，这里需要这一段配置
+		<property name="freemarkerVariables">
+			<map>
+				这里配置的是自定义标签，有多个也一起在这里配置
+				<entry key="shiro" value-ref="shiroTag" />
+			</map>
+		</property>
+		 -->
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="numberFormat">0.##</prop>
+				<!-- 模板更新间隔，开发时设置为1，项目工作时建议设置为较大数字 -->
+				<prop key="template_update_delay">1</prop>
+			</props>
+		</property>
 	</bean>
 
 	<!-- 返回json 需导入 jackson-annotations.jar，jackson-core.jar，jackson-databind.jar -->
@@ -27,8 +59,8 @@
 					class="org.springframework.http.converter.StringHttpMessageConverter">
 					<property name="supportedMediaTypes">
 						<list>
-							<value>text/html; charset=UTF-8</value>
 							<value>application/json;charset=UTF-8</value>
+							<value>text/html; charset=UTF-8</value>
 						</list>
 					</property>
 				</bean>
@@ -36,8 +68,8 @@
 				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 					<property name="supportedMediaTypes">
 						<list>
-							<value>text/html; charset=UTF-8</value>
 							<value>application/json;charset=UTF-8</value>
+							<value>text/html; charset=UTF-8</value>
 						</list>
 					</property>
 				</bean>

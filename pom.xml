@@ -12,6 +12,7 @@
 		<aspectj.version>1.8.10</aspectj.version>
 		<jackson.version>2.9.6</jackson.version>
 		<logback.version>1.2.3</logback.version>
+		<freemarker-version>2.3.23</freemarker-version>
 	</properties>
 
 	<dependencies>
@@ -30,6 +31,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.6</version>
+		</dependency>
+		<!-- freemarker-->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker-version}</version>
 		</dependency>
 
 		<!-- 添加 spring 依赖包 -->

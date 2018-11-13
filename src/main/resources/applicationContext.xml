@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- 自动扫描指定目录，将控制器加载到bean -->
-	<context:component-scan base-package="com.xx55xx" />
+	<context:component-scan base-package="cn.xx55xx" />
 
 	<!-- 配置 druid 数据源 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
@@ -16,7 +16,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="123456" />
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/zmall?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false" />
 	</bean>
 	
 		<!-- 配置 sessionFactory -->
@@ -32,7 +32,7 @@
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 ,包下的类需要使用@MapperScan注解,否则容器注入会失败 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.xx55xx.mapper" />
+		<property name="basePackage" value="cn.xx55xx.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -53,7 +53,7 @@
 
 	<!-- 配置事物切入点 -->
 	<aop:config>
-		<aop:pointcut expression="execution(* com.xx55xx.service.*.*(..))" id="pointCut" />
+		<aop:pointcut expression="execution(* cn.xx55xx.service.*.*(..))" id="pointCut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut" />
 	</aop:config>
 
