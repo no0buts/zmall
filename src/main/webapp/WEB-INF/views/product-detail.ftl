@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="手机" />
-    <meta name="description" content="小米手机,xiaomi" />
+    <meta name="keywords" content="小米手机,xiaomi" />
+    <meta name="description" content="手机详情" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 <body>
@@ -48,10 +48,18 @@
 
     });
     function init() {
-        var getDataUrl = ctx+ '/api/getProductDetailJson/573627';
-        //$.get()的第一个参数是我们希望请求的URL，第二个参数是请求成功后所执行的回调函数（存有请求的状态）。
+
+        // var htmlHref = window.location.href;   //   http://localhost:8080/mall/product/id值
+        // htmlHref = htmlHref.replace(/^http:\/\/[^/]+/, "");  //   /mall/product/id值
+        var htmlPath = window.location.pathname;    //   /mall/product/id值
+        var addr = htmlPath.substr(htmlPath.lastIndexOf('/', htmlPath.lastIndexOf('/') - 1) + 1); // product/id值
+        var index = addr.lastIndexOf("\/"); //7,即'product/id值'中斜杠的索引是7
+        var addrLast = decodeURI(addr.substring(index + 1, addr.length)); //js获取字符串中最后一个斜杠后面的内容
+
+        var getDataUrl = ctx + '/api/getProductDetailJson/' + addrLast;
+        // $.get()的第一个参数是我们希望请求的URL，第二个参数是请求成功后所执行的回调函数（存有请求的状态）。
         $.get(getDataUrl,function(data,status){
-            alert("数据: " + data + "\n状态: " + status);
+            console.log("数据: " + data + "\n状态: " + status);
             $("#productIdKey").html(data.data.productId);
             $("#productNameKey").html(data.data.productName);
             $("#productPriceKey").html(data.data.productPrice);
@@ -67,5 +75,4 @@
 
 
 <style type="text/css">.snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style>
-<div class="snow-container"></div>
 </html>
