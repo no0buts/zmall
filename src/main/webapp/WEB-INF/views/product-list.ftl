@@ -10,11 +10,10 @@
 </head>
 <body>
 <div class="ibody">
-    <table border="1">
-        <ul>
+    <ul>
 
-        </ul>
-    </table>
+    </ul>
+
 
 </div>
 

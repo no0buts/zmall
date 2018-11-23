@@ -16,6 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `buyer`
+--
+
+DROP TABLE IF EXISTS `buyer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `buyer` (
+  `buyer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `buyer_account` varchar(20) NOT NULL,
+  `buyer_password` varchar(16) NOT NULL,
+  `buyer_nickname` varchar(45) NOT NULL,
+  `buyer_truename` varchar(45) NOT NULL,
+  `buyer_headimg` varchar(45) DEFAULT NULL,
+  `buyer_phonenum` varchar(11) NOT NULL,
+  PRIMARY KEY (`buyer_id`),
+  UNIQUE KEY `buyer_id_UNIQUE` (`buyer_id`),
+  UNIQUE KEY `buyer_accountnum_UNIQUE` (`buyer_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=100011 DEFAULT CHARSET=utf8 COMMENT='买家信息表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `buyer`
+--
+
+LOCK TABLES `buyer` WRITE;
+/*!40000 ALTER TABLE `buyer` DISABLE KEYS */;
+INSERT INTO `buyer` VALUES (100001,'1903749370','123456','小周','周丽',NULL,'15172363731'),(100002,'3251332530','123456','哈哈哈','王二妮',NULL,'17632456789'),(100003,'z111111111','666666','哈妹','薛佳凝',NULL,'13533445432'),(100004,'2332332332','123456','小哇','钟汉良',NULL,'18683456789'),(100005,'10101010','12345678','喵喵喵','唐小薇',NULL,'15123433288');
+/*!40000 ALTER TABLE `buyer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product_info`
 --
 
@@ -61,4 +92,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-14 23:55:45
+-- Dump completed on 2018-11-23 17:43:05

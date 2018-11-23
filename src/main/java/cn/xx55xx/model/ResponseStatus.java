@@ -8,6 +8,13 @@ public class ResponseStatus {
 
     private String resultMsg;
 
+    public void setStatus(Boolean success, String resultCode,
+                          String resultMsg) {
+        this.success = success;
+        this.resultCode = resultCode;
+        this.resultMsg = resultMsg;
+    }
+
     public ResponseStatus() {
         success = true;
     }

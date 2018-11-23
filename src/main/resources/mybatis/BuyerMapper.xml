@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xx55xx.mapper.BuyerMapper">
+
+    <resultMap id="BuyerEntity" type="cn.xx55xx.entity.BuyerEntity">
+        <id property="buyerId" column="buyer_id"></id>
+        <result property="buyerAccount" column="buyer_account"/>
+        <result property="buyerPassword" column="buyer_password"/>
+        <result property="buyerNickname" column="buyer_nickname"/>
+        <result property="buyerTruename" column="buyer_truename"/>
+        <result property="buyerHeadimg" column="buyer_headimg"/>
+        <result property="buyerPhonenum" column="buyer_phonenum"/>
+    </resultMap>
+
+    <!--通过买家账号查找买家-->
+    <select id="getBuyerByAccount" resultMap="BuyerEntity" parameterType="java.lang.String">
+		SELECT * FROM BUYER WHERE buyer_account = #{buyerAccount}
+	</select>
+
+    <!--用户注册之后，将这条数据插入到买家表中。useGeneratedKeys="true"把新增加的主键赋值到自己定义的keyProperty（id）中 -->
+    <insert id="insertBuyer" parameterType="cn.xx55xx.entity.BuyerEntity" useGeneratedKeys="true" keyProperty="buyerId">
+        INSERT INTO BUYER VALUES ( null, #{buyerAccount}, #{buyerPassword}, #{buyerNickname}, #{buyerTruename}, #{buyerHeadimg}, #{buyerPhonenum})
+    </insert>
+
+
+
+</mapper>

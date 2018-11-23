@@ -21,4 +21,20 @@ public class UrlController {
 		modelAndView.setViewName( "product-detail" );
 		return modelAndView;
 	}
+
+	//买家登录
+	@RequestMapping("/buyer/login")
+	public ModelAndView toBuyerLogin() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("buyer-login");
+		return modelAndView;
+	}
+
+	//买家注册
+	@RequestMapping("/buyer/regist")
+	public ModelAndView toBuyerRegist() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("buyer-regist");
+		return modelAndView;
+	}
 }
