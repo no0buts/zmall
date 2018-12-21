@@ -33,15 +33,18 @@
             <td>图片链接</td>
             <td><img id="productImageKey" src="" alt="图片加载失败！" width="300" height="300"></td>
         </tr>
-    </table>
 
+
+    </table>
+    <button id="addToCartBtn" onclick="addToCart()">加入购物车</button>
+    <button id="buyBtn" onclick="buyNow()">立即购买</button>
 </div>
 </body>
 <script src="${request.contextPath}/static/js/jquery-3.3.1.min.js"></script>
 
 <script>
     var ctx = '${request.contextPath}';
-
+    var productId;
     /**一个页面响应加载的顺序是：域名解析、载html、加载js和css-加载图片等其他信息。那么Dom Ready应该在“加载js和css”和“加载图片等其他信息”之间，就可以操作Dom了。*/
     $(document).ready(function(){  //表示文档结构已经加载完成（不包含图片等非文字媒体文件）
         init();
@@ -68,7 +71,18 @@
             $("#productPriceKey").html(data.data.productPrice);
             $("#productImageKey").attr("src",data.data.productImage);
 
+            productId = data.data.productId;
         });
+    }
+
+    function addToCart() {
+
+    }
+
+    function buyNow() {
+        //跳转到订单填写页，把productId传到订单填写页
+        var fillOrderUrl = ctx+"/order/fill?productId="+productId;
+        window.location.href = fillOrderUrl;
     }
 
 </script>

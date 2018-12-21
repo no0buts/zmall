@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xx55xx.mapper.RecipientMapper">
+
+    <resultMap id="RecipientEntity" type="cn.xx55xx.entity.RecipientEntity">
+        <id property="recipientId" column="recipient_id"></id>
+        <result property="buyerId" column="buyer_id"/>
+        <result property="recipientName" column="recipient_name"/>
+        <result property="recipientPhonenum" column="recipient_phonenum"/>
+        <result property="recipientAddress" column="recipient_address"/>
+        <result property="recipientAddressDetail" column="recipient_address_detail"/>
+        <result property="recipientDefault" column="recipient_default"/>
+        <result property="recipientCreateTime" column="recipient_createTime"/>
+        <result property="recipientUpdateTime" column="recipient_updateTime"/>
+    </resultMap>
+
+
+    <!--根据买家id找到其所有收件人-->
+    <select id="getRecipientByBuyerId" resultMap="RecipientEntity" parameterType="java.lang.Integer">
+		SELECT * FROM RECIPIENT WHERE buyer_id = #{buyerId}
+	</select>
+
+    <!--添加一个收件人。useGeneratedKeys="true"把新增加的主键赋值到自己定义的keyProperty（id）中 -->
+    <insert id="insertRecipient" parameterType="cn.xx55xx.entity.RecipientEntity" useGeneratedKeys="true" keyProperty="recipientId">
+        INSERT INTO RECIPIENT(buyer_id, recipient_name, recipient_phonenum, recipient_address, recipient_address_detail, recipient_default)
+        VALUES (#{buyerId}, #{recipientName}, #{recipientPhonenum}, #{recipientAddress},#{recipientAddressDetail}, #{recipientDefault})
+    </insert>
+
+    <!--根据收件人id更新某个收件人-->
+    <update id="updateRecipient" parameterType="cn.xx55xx.entity.RecipientEntity">
+        UPDATE RECIPIENT SET recipient_name=#{recipientName}, recipient_phonenum=#{recipientPhonenum},
+            recipient_address=#{recipientAddress}, recipient_address_detail=#{recipientAddressDetail}
+          WHERE recipient_id=#{recipientId}
+    </update>
+
+    <!--根据收件人Id删除收件人-->
+    <delete id="deleteRecipient" parameterType="java.lang.Integer">
+        delete form recipient where recipient_id=#{recipientId}
+    </delete>
+</mapper>
+

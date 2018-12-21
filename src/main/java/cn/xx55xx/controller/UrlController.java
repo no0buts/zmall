@@ -37,4 +37,21 @@ public class UrlController {
 		modelAndView.setViewName("buyer-regist");
 		return modelAndView;
 	}
+
+	//买家在产品详情页 点击立即购买到填写订单页面
+	@RequestMapping("/order/fill")
+	public ModelAndView toFillOrder() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("order-fill");
+		return modelAndView;
+	}
+
+	//在填写订单会显示默认收件人信息，点击这一块儿区域，显示其全部收件人信息，即收件人列表页面
+	@RequestMapping("/recipient/list")
+	public ModelAndView recipientList() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("recipient-list");
+		return modelAndView;
+	}
+
 }

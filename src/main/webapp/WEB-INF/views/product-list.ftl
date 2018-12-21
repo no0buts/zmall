@@ -2,10 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-<#--<title>${blogger.nickName}</title>-->
     <meta name="keywords" content="小米手机,xiaomi" />
     <meta name="description" content="手机列表" />
-<#--<link href="${request.contextPath}/static/css/foreground/base.css" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 <body>
@@ -41,6 +39,7 @@
 <!-- 用到了art-template模板，后台传过来的数据Json（List集合），在这里要显示这个List -->
 <script id="productLi" type="text/template">
     {{each products as product}}
+
     <a href="${request.contextPath}/product/{{product.productId}}" >
         <li id="productLiContainer">
             <div>

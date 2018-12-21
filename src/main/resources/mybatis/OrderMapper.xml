@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xx55xx.mapper.OrderMapper">
+
+    <resultMap id="OrderEntity" type="cn.xx55xx.entity.OrderEntity">
+        <id property="orderId" column="order_id"></id>
+        <result property="orderNumber" column="order_number"/>
+        <result property="buyerId" column="buyer_id"/>
+        <result property="productId" column="product_id"/>
+        <result property="productCount" column="product_count"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="payType" column="pay_type"/>
+        <result property="moneyAmount" column="money_amount"/>
+        <result property="freight" column="freight"/>
+        <result property="moneyActual" column="money_actual"/>
+        <result property="orderState" column="order_state"/>
+
+
+    </resultMap>
+
+    <insert id="insertOrder" parameterType="cn.xx55xx.entity.OrderEntity" >
+      INSERT INTO ORDER values(null ,#{orderNumber},#{buyerId},#{product_id},#{productId},#{productCount},
+          null,#{payType},#{moneyAmount},#{freight},#{moneyActual},#{orderState})
+    </insert>
+
+    <select id="getOrdersByBuyerId" resultMap="OrderEntity" parameterType="java.lang.Integer">
+		SELECT * FROM ORDER where buyer_id =#{buyerId}
+	</select>
+
+
+
+</mapper>
