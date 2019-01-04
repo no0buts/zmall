@@ -9,4 +9,7 @@ public interface RecipientMapper {
     void insertRecipient(RecipientEntity recipientEntity);
     void updateRecipient(RecipientEntity recipientEntity);
     void deleteRecipient(Integer reipientId);
+
+    void updateDefaultRecipient(String recipientDefaultId);//将之前的默认收件人recipient_default字段值改为0
+    void updateNewDefaultRecipient(String recipientNewId);//将新的默认收件人recipient_default字段值改为1
 }

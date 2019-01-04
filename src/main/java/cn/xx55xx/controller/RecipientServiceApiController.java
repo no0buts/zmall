@@ -3,10 +3,7 @@ package cn.xx55xx.controller;
 
 import cn.xx55xx.entity.RecipientEntity;
 import cn.xx55xx.manager.RedisCacheManager;
-import cn.xx55xx.model.RecipientReq;
-import cn.xx55xx.model.RedisValueReq;
-import cn.xx55xx.model.ResponseData;
-import cn.xx55xx.model.ResponseStatus;
+import cn.xx55xx.model.*;
 import cn.xx55xx.service.RecipientService;
 import cn.xx55xx.util.PhoneFormatCheckUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -108,5 +105,14 @@ public class RecipientServiceApiController {
 
     }
 
+    //改变默认收件人
+    @RequestMapping("/api/updateDefaultRecipient")
+    public @ResponseBody ResponseData updateDefaultRecipient (
+            @RequestBody RecipientIdDefaultReq recipientIdDefaultReq) {
+        ResponseStatus responseStatus = new ResponseStatus();
+        recipientService.updateDefaultRecipient(recipientIdDefaultReq);
+
+        return new ResponseData(responseStatus, null);
+    }
 
 }

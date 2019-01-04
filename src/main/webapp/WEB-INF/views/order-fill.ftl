@@ -70,6 +70,7 @@
     var ctx = '${request.contextPath}';
     var productId = getURLParam("productId");
     var recipientList;
+    var recipientDefaultId;
     // 页面加载完成执行ready
     $(document).ready(function(){
         initProduct();
@@ -93,7 +94,6 @@
         $.get(recipientUrl,function (data,status) {
 
             recipientList = data.data;
-            var recipientDefaultId;
 
             console.log(recipientList);
 
@@ -114,13 +114,12 @@
             }
         });
     }
-    //获取收件人列表和默认收件人
+    //刷新并获取收件人列表和默认收件人
     function refreshRecipient() {
         var recipientUrl = ctx + '/api/getAllRecipient';
         $.get(recipientUrl,function (data,status) {
 
             recipientList = data.data;
-            var recipientDefaultId;
 
             console.log(recipientList);
 
@@ -314,6 +313,36 @@
     }
 
 
+    //点击某个按钮设置为默认收件人
+    function setDefaultRecipient(recipientNewId) {
+        // recipientDefaultId  //原默认收件人的id，全局变量
+        $.ajax({
+            type: 'post',
+            url: ctx + '/api/updateDefaultRecipient',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                recipientNewId: recipientNewId,
+                recipientDefaultId: recipientDefaultId
+            }),
+            dataType: 'json',
+            success: function(data) {
+                var isSuccess = data.responseStatus.success;
+                var resultCode = data.responseStatus.resultCode;
+                var resultMsg = data.responseStatus.resultMsg;
+                if (isSuccess) {  //
+                    // alert("hello");
+                    refreshRecipient();
+                } else {  //不成功的一系列提示
+                    console.log(resultCode);
+
+                }
+            }
+        });
+
+    }
+
+
+
     //获取地址栏URL中的参数productId
     function getURLParam(paramName) {
         /*window.location.search 获取url中"?"符后的字串
@@ -350,9 +379,9 @@
         <button class="recipient-edit"  onclick="toEditRecipient({{$index}})">编辑</button>
 
         {{if recipient.recipientDefault == 1}}  <#--默认收件人的设置默认按钮为禁用按钮-->
-            <button disabled="disabled">设置为默认收件人</button>
+            <button disabled="disabled" >设置为默认收件人</button>
         {{else}}
-            <button>设置为默认收件人</button>
+            <button onclick="setDefaultRecipient({{recipient.recipientId}})">设置为默认收件人</button>
         {{/if}}
     </li>
     <br>

@@ -2,6 +2,7 @@ package cn.xx55xx.service.impl;
 
 import cn.xx55xx.entity.RecipientEntity;
 import cn.xx55xx.mapper.RecipientMapper;
+import cn.xx55xx.model.RecipientIdDefaultReq;
 import cn.xx55xx.model.RecipientReq;
 import cn.xx55xx.service.RecipientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,13 @@ public class RecipientServiceImpl implements RecipientService {
 
     public void deleteRecipient(Integer recipientId) {
         recipientMapper.deleteRecipient(recipientId);
+    }
+
+    public void updateDefaultRecipient(RecipientIdDefaultReq recipientIdDefaultReq) {
+        String recipientDefaultId = recipientIdDefaultReq.getRecipientDefaultId();
+        String recipientNewId = recipientIdDefaultReq.getRecipientNewId();
+        recipientMapper.updateDefaultRecipient(recipientDefaultId);
+        recipientMapper.updateNewDefaultRecipient(recipientNewId);
     }
 
     public void addRecipient(RecipientReq recipientReq, Integer buyerId) {

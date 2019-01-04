@@ -37,5 +37,15 @@
     <delete id="deleteRecipient" parameterType="java.lang.Integer">
         delete form recipient where recipient_id=#{recipientId}
     </delete>
+
+    <!-- 更新默认收件人 -->
+    <update id="updateDefaultRecipient" parameterType="java.lang.String">
+        UPDATE RECIPIENT SET recipient_default='0' WHERE recipient_id=#{recipientDefaultId}
+    </update>
+    <update id="updateNewDefaultRecipient" parameterType="java.lang.String">
+        UPDATE RECIPIENT SET recipient_default='1' WHERE recipient_id=#{recipientNewId}
+    </update>
+
+
 </mapper>
 

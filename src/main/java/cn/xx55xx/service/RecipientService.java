@@ -1,6 +1,7 @@
 package cn.xx55xx.service;
 
 import cn.xx55xx.entity.RecipientEntity;
+import cn.xx55xx.model.RecipientIdDefaultReq;
 import cn.xx55xx.model.RecipientReq;
 
 import java.util.List;
@@ -32,4 +33,10 @@ public interface RecipientService {
      * @param recipientId
      */
     void deleteRecipient(Integer recipientId);
+
+    /**
+     * 更改默认收件人
+     * @param recipientIdDefaultReq
+     */
+    void updateDefaultRecipient(RecipientIdDefaultReq recipientIdDefaultReq);
 }
