@@ -8,23 +8,24 @@
         <result property="buyerId" column="buyer_id"/>
         <result property="productId" column="product_id"/>
         <result property="productCount" column="product_count"/>
-        <result property="orderTime" column="order_time"/>
+        <result property="recipientId" column="recipient_id"/>
+        <result property="orderDate" column="order_date"/>
         <result property="payType" column="pay_type"/>
-        <result property="moneyAmount" column="money_amount"/>
+        <result property="totalMoney" column="total_money"/>
         <result property="freight" column="freight"/>
-        <result property="moneyActual" column="money_actual"/>
+        <result property="actualPay" column="actual_pay"/>
         <result property="orderState" column="order_state"/>
 
 
     </resultMap>
 
     <insert id="insertOrder" parameterType="cn.xx55xx.entity.OrderEntity" >
-      INSERT INTO ORDER values(null ,#{orderNumber},#{buyerId},#{product_id},#{productId},#{productCount},
-          null,#{payType},#{moneyAmount},#{freight},#{moneyActual},#{orderState})
+      INSERT INTO ORDER_INFO(order_id, order_number, buyer_id, product_id, product_count, recipient_id, total_money, actual_pay)
+        values(null ,#{orderNumber},#{buyerId},#{productId},#{productCount},#{recipientId},#{totalMoney},#{actualPay})
     </insert>
 
     <select id="getOrdersByBuyerId" resultMap="OrderEntity" parameterType="java.lang.Integer">
-		SELECT * FROM ORDER where buyer_id =#{buyerId}
+		SELECT * FROM ORDER_INFO where buyer_id =#{buyerId}
 	</select>
 
 

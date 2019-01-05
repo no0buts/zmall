@@ -8,11 +8,12 @@ public class OrderEntity {
     private Integer buyerId;
     private Integer productId;
     private Integer productCount;
-    private Date orderTime;
+    private Integer recipientId;
+    private Date orderDate;
     private Integer payType;
-    private Double moneyAmount;
+    private Double totalMoney;
     private Double freight;
-    private Double moneyActual;
+    private Double actualPay;
     private Integer orderState;
 
     public OrderEntity() {
@@ -58,6 +59,14 @@ public class OrderEntity {
         this.productCount = productCount;
     }
 
+    public Integer getRecipientId() {
+        return recipientId;
+    }
+
+    public void setRecipientId(Integer recipientId) {
+        this.recipientId = recipientId;
+    }
+
     public Integer getPayType() {
         return payType;
     }
@@ -74,22 +83,6 @@ public class OrderEntity {
         this.orderState = orderState;
     }
 
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
-    }
-
-
-    public Double getMoneyAmount() {
-        return moneyAmount;
-    }
-
-    public void setMoneyAmount(Double moneyAmount) {
-        this.moneyAmount = moneyAmount;
-    }
 
     public Double getFreight() {
         return freight;
@@ -99,12 +92,27 @@ public class OrderEntity {
         this.freight = freight;
     }
 
-    public Double getMoneyActual() {
-        return moneyActual;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setMoneyActual(Double moneyActual) {
-        this.moneyActual = moneyActual;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
+    public Double getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(Double totalMoney) {
+        this.totalMoney = totalMoney;
+    }
+
+    public Double getActualPay() {
+        return actualPay;
+    }
+
+    public void setActualPay(Double actualPay) {
+        this.actualPay = actualPay;
+    }
 }

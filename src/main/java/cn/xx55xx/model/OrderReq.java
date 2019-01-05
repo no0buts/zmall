@@ -5,10 +5,20 @@ public class OrderReq {
 
     private Integer productId;
     private Integer productCount;
-    private Integer payType;
+    private Integer recipientId;
+    private Double productTotalMoney;
+    private Double actualPay;
 
 
     public OrderReq() {
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getProductCount() {
@@ -19,20 +29,27 @@ public class OrderReq {
         this.productCount = productCount;
     }
 
-    public Integer getPayType() {
-        return payType;
+    public Integer getRecipientId() {
+        return recipientId;
     }
 
-    public void setPayType(Integer payType) {
-        this.payType = payType;
+    public void setRecipientId(Integer recipientId) {
+        this.recipientId = recipientId;
     }
 
-    public Integer getProductId() {
-
-        return productId;
+    public Double getProductTotalMoney() {
+        return productTotalMoney;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProductTotalMoney(Double productTotalMoney) {
+        this.productTotalMoney = productTotalMoney;
+    }
+
+    public Double getActualPay() {
+        return actualPay;
+    }
+
+    public void setActualPay(Double actualPay) {
+        this.actualPay = actualPay;
     }
 }

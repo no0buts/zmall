@@ -18,7 +18,7 @@ public class OrderServiceApiController {
     @Autowired
     private OrderService orderService;
 
-
+    Integer buyerId = 100001;
 
     //点击提交订单后，
     @RequestMapping("/api/submitOrder")

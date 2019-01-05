@@ -100,9 +100,9 @@ a:link {
 }
 
 
-/*显示全部联系人按钮*/
+/*显示全部收件人按钮  添加收件人*/
 .recipient-show-all ,.recipient-add{
-    background-color: #ffc32a;
+    background-color: #dbc;
     width: 35%;
     border: none;
     color: white;
@@ -120,7 +120,7 @@ a:link {
     float: left;
 }
 .recipient-show-all:hover , .recipient-add:hover {
-    box-shadow: 0 12px 16px 0 rgba(200,200,100,0.24) , 0 17px 50px 0  rgba(200,200,100,0.19);
+    box-shadow: 0 5px 15px 0 rgba(180,2,90,0.24) , 0 20px 50px 0  rgba(180,2,90,0.19);
 }
 
 
@@ -159,3 +159,37 @@ a:link {
     font-weight: bold;
     align-items: center;
 }
+
+
+.order-submit{
+    background-color: darkorange;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 10px 24px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    display: block;
+    margin:0 auto;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.order-submit:hover {
+    border-radius: 20px;
+}
+
+
+.order-money {
+    margin-left: 15px;
+    font-size: 14px;
+}
+#productCountKey {
+    font-weight: bold;
+    color: #333;
+    padding: 0 5px;
+}
+
+

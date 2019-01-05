@@ -29,13 +29,30 @@
             <li>
                 <ul class="product-count-btn">
                     <li><span id="productMinusKey" class="product-count-minus"> - </span></li>
-                    <li><input type="text" id="productCountInputKey" class="product-count-input" value="1"></li>
+                    <li><input id="productCountInputKey" class="product-count-input" value="1"></li>
                     <li><span id="productPlusKey"  class="product-count-plus"> + </span></li>
                 </ul>
             </li>
         </ul>
     </div>
 
+    <#--商品金额部分-->
+    <div class="order-money">
+        <div>
+            <span>共<em id="productCountKey"></em>件商品，小计：</span>
+            <span id="productTotalMoneyKey"></span>
+        </div>
+        <div>
+            <span>运费：&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>￥10.00</span>
+        </div>
+        <div>
+            <span>合计：&nbsp;&nbsp;&nbsp;&nbsp;</span><span></span>
+            <span id="actualPayKey"></span>
+        </div>
+    </div>
+
+    <button id="orderSubmitKey" class="order-submit" onclick="submitOrder()">提交订单</button>
 
     <#--收件人-->
     <div id="recipientInfoKey" class="recipient-info" >
@@ -69,8 +86,15 @@
 <script>
     var ctx = '${request.contextPath}';
     var productId = getURLParam("productId");
+    var productPrice; //产品单价
+    var productCount = 1; //产品数量
+    var productTotalMoney;  //小计（商品部分）
+    var actualPay; //合计（包含运费）
+
     var recipientList;
     var recipientDefaultId;
+    var freight = 10.0;
+
     // 页面加载完成执行ready
     $(document).ready(function(){
         initProduct();
@@ -78,13 +102,46 @@
     }) ;
 
 
+
+    //购买数量 + -
+    var productMinus = document.getElementById("productMinusKey");  //-
+    var productPlus = document.getElementById("productPlusKey");  //+
+    var productCountInput = document.getElementById("productCountInputKey");//数量
+
+    productMinus.onclick = function () { //点击 -
+        if (productCountInput.value <=1) {
+            productCountInput.value = 1;
+        } else {
+            productCountInput.value = parseInt(productCountInput.value) - 1;
+        }
+        initProduct();
+        productCount = parseInt(productCountInput.value);
+    }
+    productPlus.onclick = function () {  //点击 +
+        productCountInput.value = parseInt(productCountInput.value) + 1;
+        initProduct();
+        productCount = parseInt(productCountInput.value);
+    }
+
+
+
+
     function initProduct() {
         var productUrl = ctx + '/api/getProductDetailJson/' + productId; //产品信息URL
         //向后端发请求得到产品信息（图片，名称，价格）填充到页面中
         $.get(productUrl, function (data, status) {
+
+            var productCountInputValue = parseInt(document.getElementById("productCountInputKey").value);
+            productPrice = data.data.productPrice;
+            productTotalMoney = productCountInputValue * productPrice;  //小计（商品部分）
+            actualPay = productTotalMoney + freight;  //合计（包含运费）
+
             $("#productImgKey").attr("src", data.data.productImage);
             $("#productNameKey").html(data.data.productName);
-            $("#productPriceKey").html('￥ ' + data.data.productPrice + '.00');
+            $("#productPriceKey").html('￥ ' + productPrice + '.00');  //单价
+            $("#productTotalMoneyKey").html('￥' + productTotalMoney + '.00');  //小计
+            $("#productCountKey").html(productCountInputValue);
+            $("#actualPayKey").html('￥' + actualPay + '.00');   //合计
         });
     }
 
@@ -143,20 +200,7 @@
         });
     }
 
-    //购买数量 + -
-    var productMinus = document.getElementById("productMinusKey");
-    var productPlus = document.getElementById("productPlusKey");
-    var productCountInput = document.getElementById("productCountInputKey");
-    productMinus.onclick = function () { //点击 -
-        if (productCountInput.value <=1) {
-            productCountInput.value = 1;
-        } else {
-            productCountInput.value = parseInt(productCountInput.value) - 1;
-        }
-    }
-    productPlus.onclick = function () {  //点击 +
-        productCountInput.value = parseInt(productCountInput.value) + 1;
-    }
+
 
     //点击按钮显示全部收件人
     function showAllRecipient() {
@@ -359,6 +403,27 @@
         return(false);
     }
 
+    //提交订单
+    function submitOrder(){
+        //传到后台的数据：productId、productCount、productTotalMoney、actualPay
+        $.ajax({
+            type: 'post',
+            url: ctx + '/api/submitOrder',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                productId: productId,
+                productCount: productCount,
+                recipientId: recipientDefaultId,
+                productTotalMoney: productTotalMoney,
+                actualPay: actualPay
+            }),
+            dataType: 'json',
+            success: function(data) {
+                alert("提交成功！")
+            }
+
+        });
+    }
 
 
 </script>
