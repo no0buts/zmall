@@ -30,6 +30,10 @@
             <td id="productSalesVolumeKey"></td>
         </tr>
         <tr>
+            <td>库存</td>
+            <td id="productInventoryKey"></td>
+        </tr>
+        <tr>
             <td>图片链接</td>
             <td><img id="productImageKey" src="" alt="图片加载失败！" width="300" height="300"></td>
         </tr>
@@ -70,7 +74,7 @@
             $("#productSalesVolumeKey").html(data.data.productSalesvolume);
             $("#productPriceKey").html(data.data.productPrice);
             $("#productImageKey").attr("src",data.data.productImage);
-
+            $("#productInventoryKey").html(data.data.productInventory);
             productId = data.data.productId;
         });
     }
@@ -88,5 +92,4 @@
 </script>
 
 
-<style type="text/css">.snow-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:100001;}</style>
 </html>

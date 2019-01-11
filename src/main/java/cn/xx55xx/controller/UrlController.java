@@ -46,6 +46,15 @@ public class UrlController {
 		return modelAndView;
 	}
 
+	//在订单填写页  点击提交订单  到订单支付页
+	@RequestMapping("/order/pay")
+	public ModelAndView toPayOrder() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("order-pay");
+		return modelAndView;
+	}
+
+
 	//在填写订单会显示默认收件人信息，点击这一块儿区域，显示其全部收件人信息，即收件人列表页面
 	@RequestMapping("/recipient/list")
 	public ModelAndView recipientList() {

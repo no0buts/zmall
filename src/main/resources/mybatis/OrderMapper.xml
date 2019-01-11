@@ -13,15 +13,14 @@
         <result property="payType" column="pay_type"/>
         <result property="totalMoney" column="total_money"/>
         <result property="freight" column="freight"/>
-        <result property="actualPay" column="actual_pay"/>
         <result property="orderState" column="order_state"/>
 
 
     </resultMap>
 
     <insert id="insertOrder" parameterType="cn.xx55xx.entity.OrderEntity" >
-      INSERT INTO ORDER_INFO(order_id, order_number, buyer_id, product_id, product_count, recipient_id, total_money, actual_pay)
-        values(null ,#{orderNumber},#{buyerId},#{productId},#{productCount},#{recipientId},#{totalMoney},#{actualPay})
+      INSERT INTO ORDER_INFO(order_id, order_number, buyer_id, product_id, product_count, recipient_id, total_money,order_state)
+        values(null ,#{orderNumber},#{buyerId},#{productId},#{productCount},#{recipientId},#{totalMoney},#{orderState})
     </insert>
 
     <select id="getOrdersByBuyerId" resultMap="OrderEntity" parameterType="java.lang.Integer">

@@ -11,7 +11,7 @@ public interface OrderService {
      * 添加一份订单
      * @param orderReq
      */
-    void addOrder(OrderReq orderReq);
+    String addOrder(OrderReq orderReq);
 
     /**
      * 查询用户的所有订单

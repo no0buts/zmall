@@ -26,9 +26,9 @@ public class OrderServiceApiController {
             @RequestBody OrderReq orderReq) {
         ResponseStatus responseStatus = new ResponseStatus();
 
-        orderService.addOrder(orderReq);
+        String str = orderService.addOrder(orderReq);
 
-        return new ResponseData(responseStatus,null);
+        return new ResponseData(responseStatus, str);
     }
 
 

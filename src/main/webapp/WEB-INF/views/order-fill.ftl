@@ -88,8 +88,7 @@
     var productId = getURLParam("productId");
     var productPrice; //产品单价
     var productCount = 1; //产品数量
-    var productTotalMoney;  //小计（商品部分）
-    var actualPay; //合计（包含运费）
+    var totalMoney; //合计（包含运费）
 
     var recipientList;
     var recipientDefaultId;
@@ -133,15 +132,15 @@
 
             var productCountInputValue = parseInt(document.getElementById("productCountInputKey").value);
             productPrice = data.data.productPrice;
-            productTotalMoney = productCountInputValue * productPrice;  //小计（商品部分）
-            actualPay = productTotalMoney + freight;  //合计（包含运费）
+            var productTotalMoney = productCountInputValue * productPrice;  //小计（商品部分）
+            totalMoney = productTotalMoney + freight;  //合计（包含运费）
 
             $("#productImgKey").attr("src", data.data.productImage);
             $("#productNameKey").html(data.data.productName);
             $("#productPriceKey").html('￥ ' + productPrice + '.00');  //单价
             $("#productTotalMoneyKey").html('￥' + productTotalMoney + '.00');  //小计
             $("#productCountKey").html(productCountInputValue);
-            $("#actualPayKey").html('￥' + actualPay + '.00');   //合计
+            $("#actualPayKey").html('￥' + totalMoney + '.00');   //合计
         });
     }
 
@@ -414,14 +413,22 @@
                 productId: productId,
                 productCount: productCount,
                 recipientId: recipientDefaultId,
-                productTotalMoney: productTotalMoney,
-                actualPay: actualPay
+                totalMoney: totalMoney
             }),
             dataType: 'json',
             success: function(data) {
-                alert("提交成功！")
+                var str = data.data;
+                console.log(str+"error库存不足，否则返回订单编号");
+                if (str == "error" ) { //库存不足
+                    alert("抱歉，库存不足，无法继续购买！")
+                } else {  //库存足够，返回订单编号
+                    var orderNumber = str;
+                    console.log("提交成功！订单编号为"+orderNumber);
+                    //跳转到支付页
+                    var payOrderUrl = ctx + "/order/pay?orderNumber="+orderNumber;
+                    window.location.href = payOrderUrl;
+                }
             }
-
         });
     }
 

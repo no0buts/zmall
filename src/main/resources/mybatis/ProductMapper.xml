@@ -8,6 +8,7 @@
 		<result property="productPrice" column="product_price"/>
 		<result property="productOriginalprice" column="product_originalprice"/>
 		<result property="productSalesvolume" column="product_salesvolume"/>
+		<result property="productInventory" column="product_inventory"/>
 		<result property="productImage" column="product_image"/>
 	</resultMap>
 	<select id="getProductList" resultMap="ProductEntity">
@@ -18,6 +19,19 @@
 		SELECT * FROM PRODUCT_INFO where product_id =#{productId}
 	</select>
 
+	<!--查询库存-->
+	<select id="getProductInventory" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT product_inventory FROM PRODUCT_INFO WHERE product_id = #{productId}
+	</select>
 
-	
+
+	<!--设置库存-->
+	<update id="setProductInventory" parameterType="cn.xx55xx.entity.ProductEntity">
+		UPDATE PRODUCT_INFO SET product_inventory = #{productInventory}
+			WHERE product_id = #{productId}
+	</update>
+
+
+
+
 </mapper>

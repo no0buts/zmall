@@ -6,8 +6,7 @@ public class OrderReq {
     private Integer productId;
     private Integer productCount;
     private Integer recipientId;
-    private Double productTotalMoney;
-    private Double actualPay;
+    private Double totalMoney;
 
 
     public OrderReq() {
@@ -37,19 +36,11 @@ public class OrderReq {
         this.recipientId = recipientId;
     }
 
-    public Double getProductTotalMoney() {
-        return productTotalMoney;
+    public Double getTotalMoney() {
+        return totalMoney;
     }
 
-    public void setProductTotalMoney(Double productTotalMoney) {
-        this.productTotalMoney = productTotalMoney;
-    }
-
-    public Double getActualPay() {
-        return actualPay;
-    }
-
-    public void setActualPay(Double actualPay) {
-        this.actualPay = actualPay;
+    public void setTotalMoney(Double totalMoney) {
+        this.totalMoney = totalMoney;
     }
 }

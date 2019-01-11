@@ -6,6 +6,7 @@ public class ProductEntity {
     private Double productPrice;   //产品价格
     private Double productOriginalprice;   //产品原价
     private Integer productSalesvolume;   //产品销量
+    private Integer productInventory;      //库存
     private String productImage;       //产品图片
 
     public ProductEntity() {
@@ -49,6 +50,14 @@ public class ProductEntity {
 
     public void setProductSalesvolume(Integer productSalesvolume) {
         this.productSalesvolume = productSalesvolume;
+    }
+
+    public Integer getProductInventory() {
+        return productInventory;
+    }
+
+    public void setProductInventory(Integer productInventory) {
+        this.productInventory = productInventory;
     }
 
     public String getProductImage() {
