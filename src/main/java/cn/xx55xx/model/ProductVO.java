@@ -1,6 +1,6 @@
-package cn.xx55xx.entity;
+package cn.xx55xx.model;
 
-public class ProductEntity {
+public class ProductVO {
     private Integer productId;   //产品id
     private String productName;    //产品名称
     private Double productPrice;   //产品价格
@@ -9,9 +9,18 @@ public class ProductEntity {
     private Integer productInventory;      //库存
     private String productImage;       //产品图片
 
-    public ProductEntity() {
+    public ProductVO() {
     }
 
+    public ProductVO(Integer productId, String productName, Double productPrice, Double productOriginalprice, Integer productSalesvolume, Integer productInventory, String productImage) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productOriginalprice = productOriginalprice;
+        this.productSalesvolume = productSalesvolume;
+        this.productInventory = productInventory;
+        this.productImage = productImage;
+    }
 
     public Integer getProductId() {
         return productId;

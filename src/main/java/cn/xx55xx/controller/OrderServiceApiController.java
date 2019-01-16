@@ -2,15 +2,19 @@ package cn.xx55xx.controller;
 
 import cn.xx55xx.entity.OrderEntity;
 import cn.xx55xx.model.OrderReq;
+import cn.xx55xx.model.OrderVO;
 import cn.xx55xx.model.ResponseData;
 import cn.xx55xx.model.ResponseStatus;
 import cn.xx55xx.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -32,7 +36,17 @@ public class OrderServiceApiController {
     }
 
 
-    //查看订单
+    @RequestMapping("/api/getOrderJson/{orderNumber}")
+    public @ResponseBody ResponseData getOrderJson(@PathVariable String orderNumber,
+                              HttpServletRequest request,
+                              HttpServletResponse response) {
+        ResponseStatus responseStatus = new ResponseStatus();
+        OrderVO orderVO = orderService.getOrderByNumber(orderNumber);
+        return new ResponseData(responseStatus ,orderVO);
+    }
+
+
+    //查看所有订单
     @RequestMapping("/api/getAllOrders")
     public @ResponseBody ResponseData getAllOrders () {
         ResponseStatus responseStatus = new ResponseStatus();

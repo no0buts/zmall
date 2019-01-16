@@ -10,7 +10,6 @@
         <result property="productCount" column="product_count"/>
         <result property="recipientId" column="recipient_id"/>
         <result property="orderDate" column="order_date"/>
-        <result property="payType" column="pay_type"/>
         <result property="totalMoney" column="total_money"/>
         <result property="freight" column="freight"/>
         <result property="orderState" column="order_state"/>
@@ -23,8 +22,16 @@
         values(null ,#{orderNumber},#{buyerId},#{productId},#{productCount},#{recipientId},#{totalMoney},#{orderState})
     </insert>
 
+    <select id="getOrderByOrderNo" resultMap="OrderEntity" parameterType="java.lang.String">
+        SELECT order_number,buyer_id,product_id,product_count,recipient_id,order_date,total_money,freight,order_state
+          FROM order_info
+          WHERE order_number = #{orderNumber}
+    </select>
+
     <select id="getOrdersByBuyerId" resultMap="OrderEntity" parameterType="java.lang.Integer">
-		SELECT * FROM ORDER_INFO where buyer_id =#{buyerId}
+		SELECT order_number,buyer_id,product_id,product_count,recipient_id,order_date,total_money,freight,order_state
+		  FROM ORDER_INFO
+		  where buyer_id =#{buyerId}
 	</select>
 
 

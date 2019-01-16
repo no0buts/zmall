@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-size: 14px;
+}
+
+/*产品信息*/
+.product-info {
+    height: 120px;
+    background-color: seashell;
+    margin: 10px;
+    padding: 5px;
+}
+.product-img {
+    float: left;
+    width: 120px;
+    height: 120px;
+}
+.product-info .product-name-price {
+    position: relative;
+    height: 130px;
+    margin: 0 0 5px 130px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.product-price-count {
+    position: absolute;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    color: red;
+    bottom: 8px;
+}
+
+.product-count {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.order-cost {
+    padding: 5px 0 0 15px ;
+}
+
+.order-cost div {
+    padding-top: 5px;
+    border-bottom: #9F9F9F 1px;
+}
+
+/*收件人*/
+.recipient-info {
+    margin: 10px;
+    padding: 5px;
+    border-style: inset;
+    border-width: 3px;
+    border-color: lightsalmon;
+    line-height: 24px;
+}

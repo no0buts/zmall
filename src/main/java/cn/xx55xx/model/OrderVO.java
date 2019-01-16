@@ -1,23 +1,18 @@
-package cn.xx55xx.entity;
-
-import cn.xx55xx.model.ProductVO;
+package cn.xx55xx.model;
 
 import java.util.Date;
 
-public class OrderEntity {
+public class OrderVO {
     private String orderNumber;
     private Integer buyerId;
-    private Integer productId;
+    private ProductVO productVO;
     private Integer productCount;
-    private Integer recipientId;
+    private RecipientVO recipientVO;
     private Date orderDate;
+    private String orderDateStr;
     private Double totalMoney;
     private Double freight;
     private Integer orderState;
-
-    public OrderEntity() {
-    }
-
 
     public String getOrderNumber() {
         return orderNumber;
@@ -35,12 +30,12 @@ public class OrderEntity {
         this.buyerId = buyerId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public ProductVO getProductVO() {
+        return productVO;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProductVO(ProductVO productVO) {
+        this.productVO = productVO;
     }
 
     public Integer getProductCount() {
@@ -51,29 +46,13 @@ public class OrderEntity {
         this.productCount = productCount;
     }
 
-    public Integer getRecipientId() {
-        return recipientId;
+
+    public RecipientVO getRecipientVO() {
+        return recipientVO;
     }
 
-    public void setRecipientId(Integer recipientId) {
-        this.recipientId = recipientId;
-    }
-
-    public Integer getOrderState() {
-        return orderState;
-    }
-
-    public void setOrderState(Integer orderState) {
-        this.orderState = orderState;
-    }
-
-
-    public Double getFreight() {
-        return freight;
-    }
-
-    public void setFreight(Double freight) {
-        this.freight = freight;
+    public void setRecipientVO(RecipientVO recipientVO) {
+        this.recipientVO = recipientVO;
     }
 
     public Date getOrderDate() {
@@ -84,6 +63,14 @@ public class OrderEntity {
         this.orderDate = orderDate;
     }
 
+    public String getOrderDateStr() {
+        return orderDateStr;
+    }
+
+    public void setOrderDateStr(String orderDateStr) {
+        this.orderDateStr = orderDateStr;
+    }
+
     public Double getTotalMoney() {
         return totalMoney;
     }
@@ -92,4 +79,19 @@ public class OrderEntity {
         this.totalMoney = totalMoney;
     }
 
+    public Double getFreight() {
+        return freight;
+    }
+
+    public void setFreight(Double freight) {
+        this.freight = freight;
+    }
+
+    public Integer getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(Integer orderState) {
+        this.orderState = orderState;
+    }
 }

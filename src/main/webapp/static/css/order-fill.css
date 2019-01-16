@@ -28,10 +28,11 @@
 }
 
 .product-price {
+    position: absolute;
     font-size: 14px;
     font-family: "微软雅黑";
     color: red;
-    padding-top: 40px;
+    bottom: 8px;
 }
 
 ul,li {

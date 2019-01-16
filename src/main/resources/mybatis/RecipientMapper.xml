@@ -20,6 +20,11 @@
 		SELECT * FROM RECIPIENT WHERE buyer_id = #{buyerId}
 	</select>
 
+    <!--根据收件人id查询收件人-->
+    <select id="getRecipientById" parameterType="java.lang.Integer" resultMap="RecipientEntity">
+      SELECT * FROM recipient WHERE recipient_id = #{recipintId}
+    </select>
+
     <!--添加一个收件人。useGeneratedKeys="true"把新增加的主键赋值到自己定义的keyProperty（id）中 -->
     <insert id="insertRecipient" parameterType="cn.xx55xx.entity.RecipientEntity" useGeneratedKeys="true" keyProperty="recipientId">
         INSERT INTO RECIPIENT(buyer_id, recipient_name, recipient_phonenum, recipient_address, recipient_address_detail, recipient_default)

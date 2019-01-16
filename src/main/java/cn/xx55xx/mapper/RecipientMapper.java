@@ -12,4 +12,6 @@ public interface RecipientMapper {
 
     void updateDefaultRecipient(String recipientDefaultId);//将之前的默认收件人recipient_default字段值改为0
     void updateNewDefaultRecipient(String recipientNewId);//将新的默认收件人recipient_default字段值改为1
+
+    RecipientEntity getRecipientById(Integer recipientId);
 }
