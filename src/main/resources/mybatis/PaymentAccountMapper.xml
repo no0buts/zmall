@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xx55xx.mapper.PaymentAccountMapper">
+
+    <resultMap id="PaymentAccountEntity" type="cn.xx55xx.entity.PaymentAccountEntity">
+        <id property="accountId" column="account_id"></id>
+        <result property="accountNumber" column="account_number"/>
+        <result property="accountType" column="account_type"/>
+        <result property="paymentPassword" column="payment_password"/>
+        <result property="buyerId" column="buyer_id"/>
+        <result property="accountBalance" column="account_balance"/>
+    </resultMap>
+
+    <!--通过买家id查找买家的所有支付账户-->
+    <select id="getPaymentAccuntByBuyer" resultMap="PaymentAccountEntity" parameterType="java.lang.Integer">
+		SELECT * FROM payment_account WHERE buyer_id = #{buyerId}
+	</select>
+
+    <!--&lt;!&ndash; 添加支付方式 &ndash;&gt;-->
+    <!--<insert id="insertPaymentAccount" parameterType="cn.xx55xx.entity.PaymentAccountEntity">-->
+        <!--INSERT INTO payment_account-->
+          <!--VALUES ( null, #{}, #{}, #{}, #{}, #{}, #{})-->
+    <!--</insert>-->
+
+
+
+</mapper>

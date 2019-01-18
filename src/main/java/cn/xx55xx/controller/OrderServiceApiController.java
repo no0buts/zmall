@@ -36,6 +36,7 @@ public class OrderServiceApiController {
     }
 
 
+    //根据订单号获取订单信息
     @RequestMapping("/api/getOrderJson/{orderNumber}")
     public @ResponseBody ResponseData getOrderJson(@PathVariable String orderNumber,
                               HttpServletRequest request,
@@ -44,6 +45,7 @@ public class OrderServiceApiController {
         OrderVO orderVO = orderService.getOrderByNumber(orderNumber);
         return new ResponseData(responseStatus ,orderVO);
     }
+
 
 
     //查看所有订单

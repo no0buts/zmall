@@ -45,8 +45,11 @@
 
 
     <#--关于支付-->
-    <div>
+    <div class="payment">
+        <div>请选择支付方式</div>
+        <div id="paymentRadioKey">
 
+        </div>
     </div>
 
     <#--收件人-->
@@ -91,9 +94,13 @@
     }
 
 
-    //
+    //页面准备工作
     $(document).ready(function () {
+        initOrderInfo();
+        initPaymentInfo();
+    });
 
+    function initOrderInfo() {
         //获取到订单信息
         var getOrderUrl = ctx + "/api/getOrderJson/" + orderNumber;
         $.get(getOrderUrl, function (data, status) {
@@ -142,9 +149,16 @@
             });
 
         }) ;
+    }
 
-    });
-
+    function initPaymentInfo() {
+        //查询用户的支付账户
+        var getPaymentAccountURL = ctx + '/api/getPaymentAccountList';
+        $.get(getPaymentAccountURL, function (data, status) {
+            var paymentAccountList = data.data;
+            console.log(paymentAccountList);
+        });
+    }
 
 
 
@@ -156,13 +170,9 @@
 
 
 
-<#--<script>-->
-    <#--var s="2019-01-16 21:36:31";-->
-    <#--var reg1=/\-/g;-->
-    <#--var reg2 = /\:/g;-->
-    <#--var reg3 = /\ /g;-->
-    <#--alert(((s.replace(reg1,",")).replace(reg2,",")).replace(reg3,","));-->
-<#--</script>-->
+<script>
+
+</script>
 
 
 </html>

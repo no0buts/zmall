@@ -32,5 +32,8 @@ public interface OrderService {
     List<OrderEntity> getOrdersByBuyerId(Integer buyerId);
 
 
+    //定时器定时将超时未支付订单的订单状态改为 失效
     void cancelOrderList();
+
+
 }
