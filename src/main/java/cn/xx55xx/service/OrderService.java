@@ -32,4 +32,5 @@ public interface OrderService {
     List<OrderEntity> getOrdersByBuyerId(Integer buyerId);
 
 
+    void cancelOrderList();
 }

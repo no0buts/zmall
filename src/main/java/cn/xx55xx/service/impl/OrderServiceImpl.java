@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
     public String addOrder(OrderReq orderReq) {
         //1.将数据存入到order_info表中，订单状态设置为等待支付
 
-        OrderEntity orderEntity =  buildOrder(orderReq,1);  //订单状态设置成等待支付的状态
+        OrderEntity orderEntity =  buildOrder(orderReq);  //订单状态设置成等待支付的状态
 
         orderMapper.insertOrder(orderEntity);
 
@@ -78,6 +78,11 @@ public class OrderServiceImpl implements OrderService {
         return orders;
     }
 
+    public void cancelOrderList() {
+        //获取订单创单时间超过30分钟的状态为待支付的订单  //状态为待支付的订单   创单时间>=30min
+        orderMapper.updateOverTimeOrder();
+
+    }
 
 
     //VO即View Object，在这里处理一下数据，使得从数据库中查询到的数据方便在前端显示，如Date不作处理的话，前端显示的就是秒数
@@ -119,7 +124,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     //将前端传到后台的数据做处理
-    public OrderEntity  buildOrder(OrderReq orderReq, Integer orderState) {
+    public OrderEntity  buildOrder(OrderReq orderReq) {
         OrderEntity orderEntity = new OrderEntity();
 
         String orderNumber = GenerateOrderNoUtil.getOrderNo();
@@ -129,7 +134,6 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setProductCount(orderReq.getProductCount());
         orderEntity.setRecipientId(orderReq.getRecipientId());
         orderEntity.setTotalMoney(orderReq.getTotalMoney());
-        orderEntity.setOrderState(orderState);
 
         return orderEntity;
     }

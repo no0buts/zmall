@@ -11,6 +11,10 @@ public interface OrderMapper {
     //根据订单号查找订单
     OrderEntity getOrderByOrderNo(String orderNumber);
 
+    //更新超时未支付订单
+    void updateOverTimeOrder();
+
+
     List<OrderEntity> getOrdersByBuyerId(Integer buyerId);
 
 }

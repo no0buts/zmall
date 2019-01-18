@@ -53,12 +53,9 @@
         <div>
             <div id="recipientInfoKey" class="recipient-info" >
                 <div class="recipient-name-phonenum">
-                    收件人：
-                    <span id="recipientNameKey"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span id="recipientPhoneNumKey"></span>
-                </div>
-                <div class="recipient-address">
-                    收货地址：
+                    <img src="./..//static/icon/recipientIcon.ico">
+                    <span id="recipientNameKey"></span>&nbsp;
+                    <span id="recipientPhoneNumKey"></span>&nbsp;
                     <span id="recipientAddressKey"></span>
                 </div>
             </div>
@@ -124,7 +121,7 @@
             //支付剩余时间倒计时
             $(function(){
                 var now=new Date();
-                var end=new Date(orderDate+30*60*1000);
+                var end=new Date(orderDate+30*60*1000);  //提交订单的时间+30min就是订单失效时间，后台Date传过来变成了毫秒
 
                 /*两个时间相减,得到的是毫秒ms,变成秒*/
                 var result=Math.floor(end-now)/1000; //result= 30*60s;
